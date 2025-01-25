@@ -49,9 +49,9 @@ const mentorLogin = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = generateToken(mentor._id,mentor.role);
+    const token = generateToken(mentor);
 
-    res.status(200).json({ message: "Login successful", mentorId:mentor._id ,mentorname:mentor.name,mentorRole:mentor.role,token});
+    res.status(200).json({ message: "Login successful", userId:mentor._id ,username:mentor.name,userRole:mentor.role,token});
 
   } catch (error) {
     console.error("Login error:", error);

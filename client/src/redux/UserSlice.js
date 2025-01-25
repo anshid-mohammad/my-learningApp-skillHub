@@ -1,10 +1,11 @@
+// src/slices/authSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 import { decodeToken, isTokenExpired } from '../componets/Utils/jwtUtils';
 
 const initialState = {
     token: localStorage.getItem('token') || null,
     user: null,
-    userRole: 'user',
+    userRole: null,
     loggedIn: false,
     loading: true,
 };
@@ -21,6 +22,7 @@ const authSlice = createSlice({
             state.user = decodedToken;
             state.userRole = decodedToken.role;
             state.loggedIn = true;
+            state.userId=decodedToken.id._id;
 
             localStorage.setItem('token', action.payload.token);
         },
@@ -29,14 +31,15 @@ const authSlice = createSlice({
             const token = state.token || localStorage.getItem('token');
             if (token && !isTokenExpired(token)) {
                 const decodedToken = decodeToken(token);
-                if (!decodedToken) {
-                    console.log("Failed to decode token.");
-                    return;
-                }
-
+                if (!decodedToken) return;
+console.log(decodedToken)
                 state.loggedIn = true;
                 state.user = decodedToken;
-                state.userRole = decodedToken.role;
+                state.userRole = decodedToken.id.role;
+                state.userId=decodedToken.id._id;
+                state.username=decodedToken.id.name;
+
+                console.log("",state.name)
             } else {
                 state.loggedIn = false;
                 state.token = null;
@@ -46,7 +49,6 @@ const authSlice = createSlice({
             }
             state.loading = false;
         },
-
         logout: (state) => {
             state.token = null;
             state.user = null;
@@ -55,7 +57,6 @@ const authSlice = createSlice({
 
             localStorage.removeItem('token');
         },
-
     },
 });
 

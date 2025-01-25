@@ -1,0 +1,284 @@
+/* General Styling */
+.courseDetailsContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(145deg, #f0f0f0, #ffffff);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Section */
+.leftSection {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.videoContainer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.videoImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.videoImage:hover {
+    transform: scale(1.05);
+}
+
+.playButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.playButton:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.tagContainer {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.tag {
+    background-color: #08745a;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.tag:hover {
+    background-color: #065c47;
+}
+
+.enrollButton {
+    padding: 15px;
+    background: linear-gradient(145deg, #08745a, #065c47);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.enrollButton:hover {
+    background: linear-gradient(145deg, #065c47, #08745a);
+    transform: translateY(-2px);
+}
+
+/* Right Section */
+.rightSection {
+    flex: 2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Tabs Styling */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #08745a transparent;
+}
+
+.tabs::-webkit-scrollbar {
+    height: 6px;
+}
+
+.tabs::-webkit-scrollbar-thumb {
+    background-color: #08745a;
+    border-radius: 3px;
+}
+
+.tab {
+    width: 20rem;
+    flex: none;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    color: #555;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab:hover {
+    background-color: #ddd;
+    transform: translateY(-2px);
+}
+
+.activeTab {
+    background-color: #08745a;
+    color: white;
+    border-color: #08745a;
+}
+
+/* Tab Content Styling */
+.tabContent {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    background-color: #fff;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tabContent h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+.tabContent ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #555;
+}
+
+.tabContent p {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.rating {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #ffc107;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #08745a;
+}
+
+.readMore {
+    color: #08745a;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Course Highlights */
+.courseHighlights ul {
+    background-color: rgba(8, 108, 84, 0.09);
+    list-style: none;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.courseHighlights li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.courseHighlights li::before {
+    content: '✔';
+    color: #08745a;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Responsive Styling */
+
+/* Tablet and Smaller Screens */
+@media (max-width: 768px) {
+    .courseDetailsContainer {
+        flex-direction: column;
+    }
+
+    .tab {
+        width: 110px;
+        flex: none;
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .rightSection {
+        flex: 1;
+    }
+
+    .courseHighlights ul {
+        padding: 15px;
+    }
+}
+
+/* Mobile Screens */
+@media (max-width: 480px) {
+    .tabs {
+        gap: 5px;
+
+    }
+
+    .tab {
+        font-size: 12px;
+        padding: 5px 10px;
+        width: 110px;
+    }
+
+    .tabContent {
+        padding: 10px;
+    }
+
+    .courseHighlights li {
+        font-size: 14px;
+    }
+
+    .enrollButton {
+        padding: 10px;
+        font-size: 14px;
+    }
+}

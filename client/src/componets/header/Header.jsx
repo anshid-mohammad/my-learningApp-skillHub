@@ -10,7 +10,8 @@ import {checkAuthStatus,logout} from "../../redux/UserSlice"
 
 const Header = () => {
   const dispatch=useDispatch()
-  const {loggedIn} =useSelector((state)=>state.user)
+  const {userId,username,userRole} =useSelector((state)=>state.auth)
+  console.log("header",userRole,)
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredResults, setFilteredResults] = useState([]);
@@ -31,12 +32,7 @@ const Header = () => {
     dispatch(checkAuthStatus())
 
   }, [dispatch]);
-  const mentorname=localStorage.getItem("mentorname")
-  const mentorRole=localStorage.getItem("mentorRole")
-  const role=  localStorage.getItem("userRole")
   const token = localStorage.getItem('token');
-  const username = localStorage.getItem('username');
-  console.log(role)
   // Handle logout
   function handleLogout() {
     dispatch(logout())
@@ -47,9 +43,9 @@ const Header = () => {
   }
 
   // Handle Signup
-  const handleSignup = (role) => {
+  const handleSignup = (userRole) => {
     setShowModal(false);
-    if (role === 'learner') {
+    if (userRole=== 'learner') {
       navigate('/signup');
     } else {
       navigate('/teacher-signup');
@@ -57,9 +53,9 @@ const Header = () => {
   };
 
   // Handle Login
-  const handleLogin = (role) => {
+  const handleLogin = (userRole) => {
     setShowModal(false);
-    if (role === 'mentor') {
+    if (userRole === 'mentor') {
       navigate('/teacher-login');
     } else {
       navigate('/login');
@@ -116,7 +112,7 @@ const Header = () => {
 
               {/* Welcome Username */}
               <Nav.Link style={{ color: ' #096717', fontWeight: 'bold' }}>
-                Welcome, {username || mentorname}
+                Welcome, {username }
               </Nav.Link>
             </>
           ) : (

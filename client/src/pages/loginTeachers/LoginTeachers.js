@@ -57,16 +57,16 @@ function LoginTeachers() {
         throw new Error('Login failed: No token received');
       }
 
-      const { token, mentorname, mentorRole, mentorId } = response.data;
+      const { token, username, userRole, userId } = response.data;
 
       // Dispatch the loginSuccess action to update Redux state
       dispatch(loginSuccess({ token }));
 
       // Store in localStorage
       localStorage.setItem('token', token);
-      localStorage.setItem('mentorname', mentorname);
-      localStorage.setItem('mentorRole', mentorRole);
-      localStorage.setItem('mentorid', mentorId);
+      localStorage.setItem('username', username);
+      localStorage.setItem('userrole', userRole);
+      localStorage.setItem('userId', userId);
 
       // Show success toast
       toast.success('Login successful! Redirecting...');
@@ -76,7 +76,7 @@ function LoginTeachers() {
         admin: '/admin',
         mentor: '/teachers',
       };
-      const route = roleRoutes[mentorRole] || '/';
+      const route = roleRoutes[userRole] || '/';
       navigate(route);
     } catch (error) {
       toast.error(

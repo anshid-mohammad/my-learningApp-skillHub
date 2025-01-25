@@ -1,129 +1,187 @@
 /* General Styling */
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
 }
 
-/* Layout */
+/* Learners Home Page */
 .learnerHomePage {
   display: flex;
-  min-height: 88vh;
+  min-height: 100vh;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-/* Sidebar Styling */
-.sidebar {
-  width: 260px; /* Slightly wider sidebar for better spacing */
-  background-color: #f9fafc; /* Softer shade for the background */
-  padding: 20px 15px; /* Adjusted padding for better alignment */
+/* Header */
+.header {
   display: flex;
-  flex-direction: column;
-  border-right: 2px solid #e0e0e0; /* Slightly thicker border */
+  justify-content: space-between;
+  align-items: center;
+  background-color: #005f70;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.toggleSidebarButton {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.toggleSidebarButton:hover {
+  transform: scale(1.1);
+}
+
+/* Sidebar */
+.sidebar {
+
+  background-color: #fff;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+  width: 260px;
+  flex-shrink: 0;
+  padding: 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.show {
+  transform: translateX(0);
 }
 
 .logo {
-  font-size: 22px;
-  text-align: center;
-  margin-bottom: 25px;
+  font-size: 28px;
   font-weight: bold;
-  color: #007bff; /* Highlight the logo */
+  color:rgba(8, 116, 90, 1);
+  margin-bottom: 30px;
 }
 
 .navLinks {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .navLinks li {
-  margin-bottom: 12px; /* Reduced spacing between items */
+  margin-bottom: 15px;
 }
 
 .navLinks button {
   background: none;
   border: none;
+  font-size: 18px;
+  padding: 12px 20px;
+  width: 100%;
   text-align: left;
   color: #333;
-  font-size: 16px;
-  padding: 10px 15px;
+  cursor: pointer;
   border-radius: 6px;
-  width: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.navLinks button:hover {
+  background-color: #e1f5f2;
+  color: rgba(8, 116, 90, 1);
+  transform: translateX(10px);
+}
+
+.navLinks button.active {
+  background-color:rgba(8, 116, 90, 1);
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f5f7fa;
+  transition: margin-left 0.3s ease;
+  
+  justify-items: center;
+}
+
+.content .section {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.content h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.content p {
+  font-size: 16px;
+  color: #555;
+}
+
+.courseCard {
+  width: 95%;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.addCourseButton {
+  background-color:rgba(8, 116, 90, 1);
+  color: #fff;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.navLinks button:hover {
-  background-color: #d9edf7;
-  color: #007bff;
-}
-
-.navLinks button:disabled {
-  color: #aaa;
-  pointer-events: none;
-}
-
-.sidebarImage img {
-  max-width: 100%;
-  margin-top: 20px;
-  border-radius: 8px;
-}
-
-/* Content Styling */
-.content {
-  flex: 1;
-  padding: 25px 20px;
-  background-color: #f5f7fa; /* Light background for the main content */
-}
-
-.content h1 {
-  font-size: 26px;
-  margin-bottom: 20px;
-  color: #333;
-}
-
-.courseCard {
-  background-color: #fff; /* White background for clarity */
-  padding: 25px;
-  display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center align the items */
-  justify-content: space-around; /* Evenly distribute space */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Stronger shadow for better elevation */
-  text-align: center;
-  border-radius: 25px; /* Moderate rounding for a clean look */
-  width: 55rem; /* Slightly narrower width */
-  max-width: 100%; /* Ensure it fits smaller screens */
-  margin: 0 auto; /* Center align on the page */
-}
-
-.courseCard h2 {
-  color: #007bff;
-  margin-bottom: 12px;
-}
-
-.courseCard p {
-  color: #555;
-  margin-bottom: 20px;
-}
-
-.addCourseButton {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 15px;
-}
-
 .addCourseButton:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Card Image */
+.cardImage {
+  margin-top: 20px;
 }
 
 .cardImage img {
-  max-width: 120px;
-  margin: 20px 0;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Close Button */
+.closeSidebarButton {
+  background-color: transparent;
+  border: none;
+  font-size: 30px;
+  color: #333;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transition: transform 0.2s ease;
+}
+
+.closeSidebarButton:hover {
+  transform: rotate(90deg);
 }
 
 /* Responsive Design */
@@ -132,31 +190,43 @@ body {
     flex-direction: column;
   }
 
+  .header {
+    padding: 10px 15px;
+  }
+
   .sidebar {
+    margin-top: 70px;
+
+    transform: translateX(-100%);
     width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
+    height: auto;
   }
 
-  .courseCard {
-    padding: 20px;
-    text-align: center;
-    width: 90%; /* Take most of the screen on small devices */
+  .sidebar.show {
+    transform: translateX(0);
   }
 
-  .addCourseButton {
-    width: 100%; /* Full width button for small screens */
-    padding: 12px;
+  .content {
+    margin-left: 0;
+    padding: 15px;
   }
 
-  .cardImage img {
-    max-width: 100px;
-    margin: 15px 0;
+  .closeSidebarButton {
+    display: block;
   }
 }
-  
 
-
-/* course details */
-
-
+/* Sidebar always visible on large screens */
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0);
+    position: static;
+    box-shadow: none;
+  }
+  .closeSidebarButton {
+    display: none;
+  }
+  .toggleSidebarButton {
+    display: none;
+  }
+}

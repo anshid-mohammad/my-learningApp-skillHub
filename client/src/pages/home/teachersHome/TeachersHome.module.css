@@ -1,209 +1,233 @@
 /* General Styling */
-* {
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f8fb;
-}
-
-/* Layout */
-.learnerHomePage {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+  }
+  
+  /* Learners Home Page */
+  .learnerHomePage {
     display: flex;
-    max-height: 100%;
-}
-
-/* Sidebar Styling */
-.sidebar {
     min-height: 100vh;
-    width: 260px;
-    padding: 20px 15px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  /* Header */
+  .header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0056b3;
     color: #fff;
-    background: #0056b3; /* Fallback color */
-    background: linear-gradient(135deg, #e5f1ff, #0056b3);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-    font-size: 26px;
-    text-align: center;
-    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+  
+  .toggleSidebarButton {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .toggleSidebarButton:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Sidebar */
+  .sidebar {
+  
+    background-color: #fff;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+    width: 260px;
+    flex-shrink: 0;
+    padding: 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  
+  .logo {
+    font-size: 28px;
     font-weight: bold;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.navLinks {
+    color: #0056b3;
+    margin-bottom: 30px;
+  }
+  
+  .navLinks {
     list-style: none;
     padding: 0;
-    margin: 0;
-}
-
-.navLinks li {
-    margin-top: 5px;
-    margin-bottom: 12px;
-}
-
-.navLinks button {
-    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navLinks li {
+    margin-bottom: 15px;
+  }
+  
+  .navLinks button {
+    background: none;
     border: none;
-    text-align: left;
-    color: #fff;
-    font-size: 16px;
-    padding: 12px 15px;
-    border-radius: 8px;
+    font-size: 18px;
+    padding: 12px 20px;
     width: 100%;
+    text-align: left;
+    color: #333;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.navLinks button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: #f4f8fb;
-}
-
-.navLinks button:disabled {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-/* Content Styling */
-.content {
-    flex: 1;
-    padding: 25px 20px;
-    background-color: #f4f8fb;
-}
-
-.courseCard {
-    background: linear-gradient(145deg, #ffffff, #f3f6fb);
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.7);
-    text-align: center;
-    border-radius: 25px;
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto;
-    gap: 10px;
-}
-
-.courseCard h2 {
-    color: #007bff;
-    font-size: clamp(20px, 2.5vw, 24px);
-    margin-bottom: 12px;
-}
-
-.courseCard p {
-    color: #555;
-    font-size: clamp(14px, 2vw, 16px);
-    margin-bottom: 20px;
-}
-
-.addCourseButton {
-    background: linear-gradient(90deg, #007bff, #0056b3);
-    color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .navLinks button:hover {
+    background-color: #e1f5f2;
+    color: #0056b3;
+    transform: translateX(10px);
+  }
+  
+  .navLinks button.active {
+    background-color: #0056b3;
+    color: #fff;
     font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Main Content */
+  .content {
+    flex: 1;
+    padding: 30px;
+    background-color: #f5f7fa;
+    transition: margin-left 0.3s ease;
+    
+    justify-items: center;
+  }
+  
+  .content .section {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .content h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .content p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .courseCard {
+    width: 95%;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .addCourseButton {
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.addCourseButton:hover {
-    background: linear-gradient(90deg, #0056b3, #007bff);
+  }
+  
+  .addCourseButton:hover {
+    background-color: #0056b3;
     transform: scale(1.05);
-}
-
-.cardImage img {
-    max-width: 150px;
-    margin: 20px 0;
-}
-
-/* Mobile Responsive Design */
-@media (max-width: 768px) {
+  }
+  
+  /* Card Image */
+  .cardImage {
+    margin-top: 20px;
+  }
+  
+  .cardImage img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Sidebar Close Button */
+  .closeSidebarButton {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: transform 0.2s ease;
+  }
+  
+  .closeSidebarButton:hover {
+    transform: rotate(90deg);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .learnerHomePage {
+      flex-direction: column;
+    }
+  
+    .header {
+      padding: 10px 15px;
+    }
+  
     .sidebar {
-        width: 100px;
-        padding: 20px 10px;
+      margin-top: 70px;
+  
+      transform: translateX(-100%);
+      width: 100%;
+      height: auto;
     }
-
-    .logo {
-        font-size: 22px;
+  
+    .sidebar.show {
+      transform: translateX(0);
     }
-
-    .navLinks button {
-        font-size: 14px;
-        padding: 10px;
-    }
-
+  
     .content {
-        padding: 15px;
+      margin-left: 0;
+      padding: 15px;
     }
-
-    .courseCard {
-        padding: 20px;
+  
+    .closeSidebarButton {
+      display: block;
     }
-
-    .courseCard h2 {
-        font-size: 20px;
+  }
+  
+  /* Sidebar always visible on large screens */
+  @media (min-width: 769px) {
+    .sidebar {
+      transform: translateX(0);
+      position: static;
+      box-shadow: none;
     }
-
-    .courseCard p {
-        font-size: 14px;
+    .closeSidebarButton {
+      display: none;
     }
-
-    .addCourseButton {
-        padding: 12px 20px;
-        font-size: 14px;
+    .toggleSidebarButton {
+      display: none;
     }
-
-    .cardImage img {
-        max-width: 100px;
-        margin: 15px 0;
-    }
-}
-
-/* Extra Small Screens */
-@media (max-width: 480px) {
-    .logo {
-        font-size: 20px;
-    }
-
-    .navLinks button {
-        font-size: 13px;
-        padding: 8px 10px;
-    }
-
-    .courseCard {
-        padding: 15px;
-    }
-
-    .courseCard h2 {
-        font-size: 18px;
-    }
-
-    .courseCard p {
-        font-size: 12px;
-    }
-
-    .addCourseButton {
-        padding: 10px 15px;
-        font-size: 12px;
-    }
-
-    .cardImage img {
-        max-width: 80px;
-        margin: 10px 0;
-    }
-}
+  }
+  

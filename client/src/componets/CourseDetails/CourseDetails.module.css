@@ -32,19 +32,17 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Video container */
-.videocontainer {
-  position: relative;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
+/* Image container - Adjust size */
+.imagecontainer {
+  width: 100%;
+  height: 100px; /* Reduced height for image */
   overflow: hidden;
 }
 
-.videocontainer iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.courseimage {
+  width: 100%; /* Ensure the image fills the container */
+  height: 100%; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure image covers the container without distortion */
 }
 
 /* Card content */
@@ -55,13 +53,13 @@
 
 .cardbody h5 {
   margin: 0;
-  font-size: 1rem; /* Default font size for card titles */
+  font-size: 1rem;
   font-weight: bold;
 }
 
 .cardbody p {
   margin: 5px 0 0;
-  font-size: 0.8rem; /* Default font size for card descriptions */
+  font-size: 0.8rem;
   color: #555;
 }
 
@@ -73,8 +71,8 @@
 
 .actionbutton {
   background-color: white;
-  color: rgba(8, 116, 90, 1); /* Primary text color */
-  border: 2px solid rgba(8, 116, 90, 1); /* Outline */
+  color: rgba(8, 116, 90, 1);
+  border: 2px solid rgba(8, 116, 90, 1);
   padding: 10px 20px;
   font-size: 1rem;
   border-radius: 5px;
@@ -83,13 +81,13 @@
 }
 
 .actionbutton:hover {
-  background-color: rgba(8, 116, 90, 1); /* Primary hover background */
-  color: white; /* Text color on hover */
+  background-color: rgba(8, 116, 90, 1);
+  color: white;
 }
 
 .actionbutton:focus {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(8, 116, 90, 0.3); /* Focus shadow */
+  box-shadow: 0 0 0 4px rgba(8, 116, 90, 0.3);
 }
 
 .actionbutton:active {
@@ -99,73 +97,19 @@
 }
 
 /* Responsive styles */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .courseavailable {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row for tablets */
+    grid-template-columns: repeat(4, 1fr);
     gap: 15px;
   }
 
   .coursecard {
-    width: 9rem; /* Smaller width for tablets */
+    width: auto;
   }
 
   .cardbody h5 {
-    font-size: 0.9rem; /* Slightly smaller font for tablets */
-  }
-
-  .cardbody p {
-    font-size: 0.75rem;
-  }
-
-  .actionbutton {
-    font-size: 0.9rem;
-    padding: 8px 16px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .coursesheading {
-    font-size: 1.5rem;
-  }
-
-  .courseavailable {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row for mobile */
-    gap: 10px;
-  }
-
-  .coursecard {
-    width: 7rem; /* Smaller width for mobile */
-  }
-
-  .cardbody h5 {
-    font-size: 0.8rem; /* Smaller font for mobile */
-  }
-
-  .cardbody p {
-    font-size: 0.7rem;
-  }
-
-  .actionbutton {
-    font-size: 0.85rem;
-    padding: 6px 12px;
-  }
-}
-/* Responsive styles */
-@media screen and (max-width: 1024px) and (min-width: 768px) {
-  .courseavailable {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cards per row for medium screens */
-    gap: 15px;
-  }
-
-  .coursecard {
-    width: auto; /* Adjust card width to fit the grid layout */
-  }
-
-  .cardbody h5 {
-    font-size: 1rem; /* Maintain consistent font size */
+    font-size: 1rem;
   }
 
   .cardbody p {
@@ -176,25 +120,21 @@
     font-size: 1rem;
     padding: 10px 20px;
   }
-  .coursesheading{
-    margin-top: 90px;
-  }
 }
 
-/* Responsive styles for tablets (below 768px) */
 @media screen and (max-width: 768px) {
   .courseavailable {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 2 cards per row for tablets */
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
 
   .coursecard {
-    width: 8rem; /* Smaller width for tablets */
+    width: 8rem;
   }
 
   .cardbody h5 {
-    font-size: 0.9rem; /* Slightly smaller font for tablets */
+    font-size: 0.9rem;
   }
 
   .cardbody p {
@@ -215,16 +155,16 @@
 
   .courseavailable {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row for mobile */
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
 
   .coursecard {
-    width: 7rem; /* Smaller width for mobile */
+    width: 7rem;
   }
 
   .cardbody h5 {
-    font-size: 0.8rem; /* Smaller font for mobile */
+    font-size: 0.8rem;
   }
 
   .cardbody p {

@@ -12,6 +12,7 @@ import TeachersForm from "./pages/home/teachersForm/TeachersForm";
 import Sample from "./componets/sample/Sample";
 import AdminHome from "./pages/admin/AdminHome";
 import CourseList from "./pages/admin/CourseList/CourseList";
+import CourseDetailsPage from "./pages/learnersHome/CourseDetailsPage/CourseDetailsPage";
 
 
 function App() {
@@ -25,8 +26,15 @@ function App() {
         <Route  path='/teacher-signup' element={<SignupTeacher/>}></Route>
         <Route  path='/teacher-login' element={<LoginTeachers/>}></Route>
         <Route  path='/teachers' element={<TeachersHome/>}></Route>
+
+
         <Route  path='/learners' element={<LearnersHome/>}></Route>
+        <Route  path='/course-details/:id' element={<CourseDetailsPage/>}></Route>
+
+
         <Route  path='/teachers-form' element={<TeachersForm/>}></Route>
+
+
         <Route  path='/sample' element={<Sample/>}></Route>
         <Route  path='/admin' element={<AdminHome/>}></Route>
         <Route  path='/admin-courselist/:id' element={<CourseList/>}></Route>

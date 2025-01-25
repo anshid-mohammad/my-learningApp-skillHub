@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./footer.css"
 import { useNavigate } from 'react-router-dom'; 
+import { checkAuthStatus } from '../../redux/UserSlice';
+import { useDispatch,useSelector } from 'react-redux';
 
 
 function Footer() {
 
-  const token=localStorage.getItem("token")
-  const userRole=localStorage.getItem("userRole")
   const mentorRole=localStorage.getItem("mentorRole")
   const navigate = useNavigate(); // Hook for navigation
+  const dispatch=useDispatch()
+  const { loggedIn, user, loading,userId,userRole } = useSelector((state) => state.auth);
 
+
+  useEffect(()=>{
+    dispatch(checkAuthStatus())
+  },[dispatch])
 // console.log("userrole footer",userRole)
   const handlelerners=(e)=>{
     e.preventDefault();
-    if (token && userRole==="learner"){
+    if (loggedIn && userRole==="learner"){
       navigate("/learners")
     }else{
       navigate("/signup")
@@ -23,7 +29,7 @@ function Footer() {
   }
   const handleTeachers=(e)=>{
     e.preventDefault();
-    if ( mentorRole==="mentor"){
+    if ( loggedIn && userRole==="mentor"){
       navigate("/teachers")
     }else{
       navigate("/teacher-signup")
