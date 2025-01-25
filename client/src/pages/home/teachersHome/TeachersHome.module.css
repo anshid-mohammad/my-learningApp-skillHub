@@ -1,0 +1,209 @@
+/* General Styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f8fb;
+}
+
+/* Layout */
+.learnerHomePage {
+    display: flex;
+    max-height: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    min-height: 100vh;
+    width: 260px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    background: #0056b3; /* Fallback color */
+    background: linear-gradient(135deg, #e5f1ff, #0056b3);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navLinks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navLinks li {
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.navLinks button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    text-align: left;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navLinks button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #f4f8fb;
+}
+
+.navLinks button:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Content Styling */
+.content {
+    flex: 1;
+    padding: 25px 20px;
+    background-color: #f4f8fb;
+}
+
+.courseCard {
+    background: linear-gradient(145deg, #ffffff, #f3f6fb);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.7);
+    text-align: center;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    gap: 10px;
+}
+
+.courseCard h2 {
+    color: #007bff;
+    font-size: clamp(20px, 2.5vw, 24px);
+    margin-bottom: 12px;
+}
+
+.courseCard p {
+    color: #555;
+    font-size: clamp(14px, 2vw, 16px);
+    margin-bottom: 20px;
+}
+
+.addCourseButton {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.addCourseButton:hover {
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    transform: scale(1.05);
+}
+
+.cardImage img {
+    max-width: 150px;
+    margin: 20px 0;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100px;
+        padding: 20px 10px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .navLinks button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .courseCard {
+        padding: 20px;
+    }
+
+    .courseCard h2 {
+        font-size: 20px;
+    }
+
+    .courseCard p {
+        font-size: 14px;
+    }
+
+    .addCourseButton {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .cardImage img {
+        max-width: 100px;
+        margin: 15px 0;
+    }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .navLinks button {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .courseCard {
+        padding: 15px;
+    }
+
+    .courseCard h2 {
+        font-size: 18px;
+    }
+
+    .courseCard p {
+        font-size: 12px;
+    }
+
+    .addCourseButton {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+
+    .cardImage img {
+        max-width: 80px;
+        margin: 10px 0;
+    }
+}

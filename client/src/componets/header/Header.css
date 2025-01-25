@@ -1,0 +1,91 @@
+/* Style for the rounded search bar */
+.search-bar {
+  max-width: 400px;
+  width: 100%;
+}
+
+.rounded-search {
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1.5rem; /* Space for the icon */
+  background-color: #f9f9f9;
+  outline: none;
+  box-shadow: none;
+}
+
+.rounded-search:focus {
+  border-color: rgba(8, 116, 90, 1);
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.rounded-search::placeholder {
+  color: #bbb;
+  font-style: italic;
+}
+.navbar .nav-link {
+  font-size: 16px;
+}
+
+.navbar .nav-link.welcome {
+  font-size: 16px;
+  font-weight: bold;
+  color: #28a745;
+  padding: 0;
+}
+.navbar .dropdown-toggle {
+  color: #000000;
+  font-weight: bold;
+}
+
+.navbar .dropdown-toggle svg {
+  margin-right: 8px; /* Adds spacing between icon and text */
+}
+
+.navbar .dropdown-menu {
+  background-color: #f8f9fa;
+}
+
+.navbar .dropdown-item {
+  font-size: 14px;
+  color: #333;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #e2e6ea;
+  color: #000000;
+}
+
+
+/* Ensure the layout for mobile screens shows the search bar */
+@media (max-width: 768px) {
+  .search-bar {
+    margin: 10px 0;
+    width: 100%;
+    order: 1;
+  }
+
+  .navbar-brand {
+    order: 1;
+    text-align: center;
+  }
+
+  .navbar-collapse {
+    order: 3;
+  }
+
+  .navbar-toggler {
+    order: 2;
+  }
+
+  .d-lg-flex {
+    display: none !important;
+  }
+
+  /* Hide 'Home', 'Login', and 'Register' on mobile */
+  .d-none.d-lg-flex {
+    display: none !important;
+  }
+
+  /* You can add more mobile-specific styles as necessary */
+}

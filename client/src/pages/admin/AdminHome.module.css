@@ -1,0 +1,198 @@
+
+  
+  
+  /* course details */
+  
+  /* General styles for the admin home page */
+.learnerHomePage {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background-color: #283593;
+  color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.navLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navLinks li {
+  margin-bottom: 15px;
+}
+
+.navLinks button {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #fff;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navLinks button:hover {
+  background-color: #3949ab;
+}
+
+.navLinks button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+/* Main content styles */
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.courseCard {
+  text-align: center;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.courseCard h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #283593;
+}
+
+.courseCard p {
+  font-size: 16px;
+  color: #616161;
+  margin-bottom: 20px;
+}
+
+.addCourseButton {
+  background-color: #283593;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addCourseButton:hover {
+  background-color: #3949ab;
+}
+
+.cardImage img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* Table styles */
+.applicantcontainer {
+  margin-top: 20px;
+}
+
+.applicantcontainer h2 {
+  font-size: 22px;
+  color: #283593;
+  margin-bottom: 20px;
+}
+
+.applicantTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.applicantTable th,
+.applicantTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.applicantTable th {
+  background-color: #283593;
+  color: #fff;
+}
+
+.applicantTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.applicantTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.openBtn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .openBtn:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  
+ 
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .learnerHomePage {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    box-shadow: none;
+    text-align: center;
+  }
+
+  .navLinks button {
+    text-align: center;
+  }
+
+  .content {
+    padding: 10px;
+  }
+}
+
+  

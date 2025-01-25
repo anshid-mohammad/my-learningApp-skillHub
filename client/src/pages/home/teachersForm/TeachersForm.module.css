@@ -1,0 +1,167 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background-color: #f4f8fb; /* Matches the homepage background */
+    height: 100vh; /* Full viewport height to ensure form scrolling works */
+  }
+  .maintext{
+    display: block;
+    font-weight: 600;
+    color:rgba(8, 116, 90, 1);
+    text-align: center;
+  }
+  .formGroup {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formGroup label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .formGroup select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease;
+  }
+  
+  .formGroup select:focus {
+    border-color: #007bff; /* Highlight color on focus */
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+  }
+  
+  .formGroup select option {
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+  }
+  
+  .courseForm {
+    width: 100%;
+    max-width: 800px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px 30px;
+    font-family: 'Poppins', sans-serif;
+    max-height: 80vh; /* Limits the height of the form */
+    overflow-y: auto; /* Adds vertical scroll inside the form */
+    scrollbar-width: thin; /* For modern browsers (Firefox) */
+    scrollbar-color: #007bff #f4f8fb; /* Custom scrollbar colors */
+  }
+  
+  /* Scrollbar Styling for Webkit Browsers (Chrome, Edge, Safari) */
+  .courseForm::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .courseForm::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 8px;
+  }
+  
+  .courseForm::-webkit-scrollbar-track {
+    background: #f4f8fb;
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+  }
+  
+  .formGroup label {
+    display: block;
+    font-weight: 600;
+    color: #007bff;
+    margin-bottom: 8px;
+  }
+  
+  .formGroup input,
+  .formGroup textarea {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    background: #f4f8fb;
+    color: #555;
+    transition: all 0.3s ease;
+  }
+  
+  .formGroup input:focus,
+  .formGroup textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  .formGroup textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .addButton {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .addButton:hover {
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    .courseForm {
+      padding: 15px 20px;
+    }
+  
+    .formGroup input,
+    .formGroup textarea {
+      font-size: 13px;
+      padding: 8px 10px;
+    }
+  
+    .addButton {
+      font-size: 14px;
+      padding: 12px 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .courseForm {
+      padding: 10px 15px;
+    }
+  
+    .formGroup input,
+    .formGroup textarea {
+      font-size: 12px;
+      padding: 6px 8px;
+    }
+  
+    .addButton {
+      font-size: 12px;
+      padding: 10px 15px;
+    }
+  }
+  

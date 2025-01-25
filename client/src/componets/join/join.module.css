@@ -1,0 +1,52 @@
+.container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30rem;
+  }
+  
+  .headerText {
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: "Source Serif Pro", serif;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .buttons {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between buttons */
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #085E4B;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 200px; /* Fixed button width */
+  }
+  
+  .btn:hover {
+    background-color: #13b731; /* Slightly lighter green */
+  }
+  
+  @media (max-width: 768px) {
+    .headerText {
+      font-size: 1.5rem; /* Smaller font for smaller screens */
+    }
+  
+    .btn {
+      width: 100%; /* Full width on smaller devices */
+      max-width: 300px; /* Limit max width */
+    }
+  }
+  
