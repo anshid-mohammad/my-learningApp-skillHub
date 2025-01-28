@@ -1,23 +1,23 @@
 /* General Styling */
 .courseDetailsContainer {
-    margin-top: 20px;
+    margin-top: 2vh;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
+    gap: 2vw;
+    padding: 2vw;
     background: linear-gradient(145deg, #f0f0f0, #ffffff);
-    border-radius: 15px;
+    border-radius: 1rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Left Section */
 .leftSection {
     flex: 1;
-    min-width: 300px;
-    max-width: 450px;
+    min-width: 280px;
+    max-width: 40%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 2vw;
 }
 
 .videoContainer {
@@ -25,7 +25,7 @@
     width: 100%;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 1rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -49,8 +49,8 @@
     color: white;
     border: none;
     border-radius: 50%;
-    font-size: 24px;
-    padding: 15px;
+    font-size: 1.5rem;
+    padding: 1rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
 }
@@ -60,53 +60,113 @@
     transform: scale(1.1);
 }
 
+/* Tags */
 .tagContainer {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1vh;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1vh;
 }
 
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 1vw;
     justify-content: center;
 }
 
 .tag {
-    background-color: #08745a;
+    background-color: #c8dad6;
     color: white;
-    padding: 8px 15px;
+    padding: 0.5rem 1rem;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 1rem;
     font-weight: 500;
     transition: background-color 0.3s;
 }
-
+.tabContent {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .lessonHeading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  .lessonList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .lessonItem {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .lessonItem:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .lessonDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .lessonTitle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .lessonDescription {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 0;
+  }
+  
+  .noLessonsText {
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+  }
+  
 .tag:hover {
     background-color: #065c47;
 }
 
+/* Enroll Button */
 .enrollButton {
-    padding: 15px;
+    padding: 1rem;
     background: linear-gradient(145deg, #08745a, #065c47);
     color: white;
-    font-size: 16px;
+    font-size: 1.2rem;
     font-weight: bold;
     text-align: center;
     border: none;
-    border-radius: 10px;
+    border-radius: 0.6rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    margin-top: 20px;
+    margin-top: 2vh;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .enrollButton:hover {
     background: linear-gradient(145deg, #065c47, #08745a);
-    transform: translateY(-2px);
+    transform: translateY(-0.2rem);
 }
 
 /* Right Section */
@@ -115,14 +175,14 @@
     min-width: 300px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 2vw;
 }
 
 /* Tabs Styling */
 .tabs {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 1vw;
+    margin-bottom: 2vh;
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: thin;
@@ -139,11 +199,10 @@
 }
 
 .tab {
-    width: 20rem;
-    flex: none;
-    padding: 10px 20px;
+    min-width: 12rem;
+    padding: 0.6rem 1.2rem;
     border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 0.6rem;
     background-color: #f5f5f5;
     color: #555;
     cursor: pointer;
@@ -154,7 +213,7 @@
 
 .tab:hover {
     background-color: #ddd;
-    transform: translateY(-2px);
+    transform: translateY(-0.2rem);
 }
 
 .activeTab {
@@ -163,122 +222,84 @@
     border-color: #08745a;
 }
 
-/* Tab Content Styling */
+/* Tab Content */
 .tabContent {
-    padding: 20px;
+    padding: 2vw;
     border: 1px solid #ddd;
-    border-radius: 15px;
+    border-radius: 1rem;
     background-color: #fff;
-    margin-top: 10px;
+    margin-top: 1vh;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .tabContent h2 {
-    margin-bottom: 10px;
-    font-size: 24px;
+    margin-bottom: 1vh;
+    font-size: 1.5rem;
     color: #333;
 }
 
-.tabContent ul {
-    list-style-type: disc;
-    margin-left: 20px;
-    color: #555;
-}
-
 .tabContent p {
-    margin-bottom: 10px;
+    margin-bottom: 1vh;
     color: #666;
-}
-
-.rating {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #ffc107;
-}
-
-.price {
-    font-size: 20px;
-    font-weight: bold;
-    color: #08745a;
-}
-
-.readMore {
-    color: #08745a;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Course Highlights */
-.courseHighlights ul {
-    background-color: rgba(8, 108, 84, 0.09);
-    list-style: none;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.courseHighlights li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #555;
-}
-
-.courseHighlights li::before {
-    content: '✔';
-    color: #08745a;
-    font-weight: bold;
-    margin-right: 10px;
 }
 
 /* Responsive Styling */
 
-/* Tablet and Smaller Screens */
-@media (max-width: 768px) {
-    .courseDetailsContainer {
-        flex-direction: column;
-    }
-
-    .tab {
-        width: 110px;
-        flex: none;
-        padding: 8px 10px;
-        font-size: 14px;
-    }
-
-    .rightSection {
-        flex: 1;
-    }
-
-    .courseHighlights ul {
-        padding: 15px;
-    }
-}
-
-/* Mobile Screens */
-@media (max-width: 480px) {
-    .tabs {
-        gap: 5px;
-
-    }
-
-    .tab {
-        font-size: 12px;
-        padding: 5px 10px;
-        width: 110px;
-    }
-
-    .tabContent {
-        padding: 10px;
-    }
-
-    .courseHighlights li {
-        font-size: 14px;
+/* Tablets */
+@media (max-width: 1024px) {
+    .leftSection {
+        max-width: 100%;
     }
 
     .enrollButton {
-        padding: 10px;
-        font-size: 14px;
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+    .tab {
+        min-width: 10rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .courseDetailsContainer {
+        flex-direction: column;
+        gap: 1vh;
+    }
+
+    .tab {
+        min-width: 8rem;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .tabContent {
+        padding: 1vw;
+    }
+
+    .enrollButton {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+    .tabContent h2 {
+        font-size: 1.2rem;
+    }
+
+    .tab {
+        margin-top: 15px;
+        min-width: 7rem;
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .enrollButton {
+        font-size: 0.8rem;
+        padding: 0.5rem;
     }
 }

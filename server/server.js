@@ -9,7 +9,7 @@ const authRoute=require("./router/authRoutes")
 const session = require('express-session');
 const mentorRouter= require("./router/mentorRoutes")
 const adminRouter= require("./router/adminRoutes")
-
+const studentRouter=require("./router/studentRoutes")
 // const storeFiles=require("./files/storeFiles")
 const createAdmin=require("./CreateAdmin/admin")
 const sampleFiles=require("./files/sampleFile")
@@ -37,7 +37,7 @@ app.use("/auth",authRoute)
 app.use("/api/auth",adminRouter)
 
 // app.use("/api/auth",storeFiles)
-app.use("/api/auth",userRouter,mentorRouter)
+app.use("/api/auth",userRouter,mentorRouter,studentRouter)
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

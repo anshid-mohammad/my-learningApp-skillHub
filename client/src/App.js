@@ -13,6 +13,13 @@ import Sample from "./componets/sample/Sample";
 import AdminHome from "./pages/admin/AdminHome";
 import CourseList from "./pages/admin/CourseList/CourseList";
 import CourseDetailsPage from "./pages/learnersHome/CourseDetailsPage/CourseDetailsPage";
+import StudentsForm from "./pages/learnersHome/StudentForm/StudentForm";
+import StudentDetails from "./pages/home/StudentDetails/StudentDetails";
+import StudentList from "./pages/home/studentList/StudentList";
+import ProgressBar from "./pages/home/addmisionProcess/ProgressBar";
+import StudentProgress from "./pages/learnersHome/studentProgress/StudentProgress";
+import Chat from "./pages/chat/Chat";
+
 
 
 function App() {
@@ -30,9 +37,17 @@ function App() {
 
         <Route  path='/learners' element={<LearnersHome/>}></Route>
         <Route  path='/course-details/:id' element={<CourseDetailsPage/>}></Route>
+        <Route  path='/student-form' element={<StudentsForm/>}></Route>
+        <Route  path='/student-Progress' element={<StudentProgress/>}></Route>
+
 
 
         <Route  path='/teachers-form' element={<TeachersForm/>}></Route>
+        <Route  path='/student-Details' element={<StudentDetails/>}></Route>
+        <Route  path='/student-list/:id' element={<StudentList/>}></Route>
+        <Route  path='/progress-bar' element={<ProgressBar/>}></Route>
+
+        <Route  path='/chat' element={<Chat/>}></Route>
 
 
         <Route  path='/sample' element={<Sample/>}></Route>

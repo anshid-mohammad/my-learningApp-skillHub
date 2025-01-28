@@ -1,0 +1,196 @@
+/* Container for the entire progress section */
+.progressContainer {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .progressContainer h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Individual progress item container */
+  .progressItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Status Wrapper */
+  .statusWrapper {
+    margin-bottom: 10px;
+  }
+  
+  .status {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #e0e0e0;
+    color: #333;
+    text-transform: capitalize;
+  }
+  
+  /* Progress bar wrapper */
+  .progressBarWrapper {
+    width: 100%;
+    height: 40px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+  
+  /* Decorative dots */
+  .dotsWrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Filled progress bar with linear gradient */
+  .progressBar {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: width 0.3s ease;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(90deg, #089021, #cdf14d);
+  }
+  .backButton {
+    position: absolute;
+    background: transparent;
+    color: #e11313;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.2s ease, color 0.3s ease;
+    border-radius: 50%;
+  }
+  
+  
+  /* Progress text inside the progress bar */
+  .progressText {
+    z-index: 2;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Description text */
+  .description {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  
+  /* Action buttons */
+  .actionButtons {
+    margin-top: 15px;
+  }
+  
+  .chatButton,
+  .paymentButton {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 10px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: white;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .chatButton:hover,
+  .paymentButton:hover {
+    transform: scale(1.05);
+    background: linear-gradient(90deg, #0056b3, #003f7f);
+  }
+  
+  /* Chat button specific gradient */
+  .chatButton {
+    background: linear-gradient(90deg, #4caf50, #2e7d32);
+  }
+  
+  .chatButton:hover {
+    background: linear-gradient(90deg, #2e7d32, #1b5e20);
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .progressItem {
+      padding: 15px;
+    }
+  
+    .progressBarWrapper {
+      height: 30px;
+    }
+  
+    .dotsWrapper .dot {
+      width: 8px;
+      height: 8px;
+    }
+  
+    .chatButton,
+    .paymentButton {
+      padding: 8px 15px;
+      font-size: 12px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .progressContainer {
+      padding: 10px;
+    }
+  
+    .progressBarWrapper {
+      height: 25px;
+    }
+  
+    .chatButton,
+    .paymentButton {
+      font-size: 10px;
+      padding: 6px 10px;
+    }
+  
+    .description {
+      font-size: 12px;
+    }
+  }
+  

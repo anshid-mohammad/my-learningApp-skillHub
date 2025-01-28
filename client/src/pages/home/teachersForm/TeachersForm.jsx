@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './TeachersForm.module.css';
 import { useNavigate } from 'react-router-dom';
+import { checkAuthStatus } from "../../../redux/UserSlice";
+import { useSelector, useDispatch } from 'react-redux';
 
 function TeachersForm() {
-  const navigate=useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const { loggedIn, user, loading, userId } = useSelector((state) => state.auth);
+  
+  // Initial form state
   const [form, setForm] = useState({
     courseName: '',
     description: '',
@@ -21,10 +28,23 @@ function TeachersForm() {
     frequency: '',
     price: '',
     discount: '',
+    lessons: []
   });
+  
+  const [photoFile, setPhotoFile] = useState(null); // State for photo file
+  const [isSubmitting, setIsSubmitting] = useState(false); // State for form submission
 
-  const [photoFile, setPhotoFile] = useState(null); // State for the photo file
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  useEffect(() => {
+    // Dispatch to check authentication status
+    dispatch(checkAuthStatus());
+  }, [dispatch]);
+    
+  useEffect(() => {
+    // Redirect to login if not authenticated
+    if (!loading && (!loggedIn || !user)) {
+      navigate('/login');
+    }
+  }, [loggedIn, user, loading, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,45 +52,66 @@ function TeachersForm() {
   };
 
   const handleFileChange = (e) => {
-    setPhotoFile(e.target.files[0]); // Update the photo file
+    setPhotoFile(e.target.files[0]);
+  };
+
+  const handleLessonChange = (index, e) => {
+    const { name, value } = e.target;
+    const newLessons = [...form.lessons];
+    newLessons[index][name] = value;
+    setForm((prevForm) => ({ ...prevForm, lessons: newLessons }));
+  };
+
+  const addLesson = () => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      lessons: [...prevForm.lessons, { title: '', description: '', duration: '', videoUrl: '', resources: '' }],
+    }));
+  };
+
+  const removeLesson = (index) => {
+    const newLessons = form.lessons.filter((_, i) => i !== index);
+    setForm((prevForm) => ({ ...prevForm, lessons: newLessons }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-  
+
     // Append form fields to FormData
     Object.keys(form).forEach((key) => {
-      formData.append(key, form[key]);
+      if (key !== 'lessons') {
+        formData.append(key, form[key]);
+      }
     });
-  
+
+    formData.append('teacherId', userId);
+
+    // Append lessons as JSON
+    formData.append('lessons', JSON.stringify(form.lessons));
+
     // Append the photo file
     if (photoFile) {
       formData.append('photo', photoFile);
     }
-  
-    // Debug: log FormData before sending to ensure all fields are included
-    console.log([...formData]);
-  
+
     try {
       setIsSubmitting(true);
-  
+
       const response = await axios.post('/api/auth/add-course', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-  
+
       console.log('Course created:', response.data);
       navigate("/teachers");
       alert('Course created successfully!');
     } catch (error) {
-      // Handle error in a more detailed way
-      console.error('Error creating course:', error.response?.data || error.message);
+      console.error('Error creating course:', error);
       alert('Failed to create course. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
-  
 
   return (
     <div className={styles.formContainer}>
@@ -113,21 +154,19 @@ function TeachersForm() {
         </div>
 
         <div className={styles.formGroup}>
-  <label>Level</label>
-  <select
-    name="level"
-    value={form.level}
-    onChange={handleInputChange}
-    required
-  > 
-    <option value="" disabled>
-      Select Level
-    </option>
-    <option value="Beginner">Beginner</option>
-    <option value="Intermediate">Intermediate</option>
-    <option value="Advanced">Advanced</option>
-  </select>
-</div>
+          <label>Level</label>
+          <select
+            name="level"
+            value={form.level}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="" disabled>Select Level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
 
         <div className={styles.formGroup}>
           <label>Teacher's Name</label>
@@ -178,7 +217,7 @@ function TeachersForm() {
         </div>
 
         <div className={styles.formGroup}>
-          <label>institution image</label>
+          <label>Institution Image</label>
           <input
             type="file"
             accept="image/*"
@@ -265,6 +304,45 @@ function TeachersForm() {
             onChange={handleInputChange}
             placeholder="Enter discount details"
           />
+        </div>
+
+        <div className={styles.lessonsContainer}>
+          <h3>Lessons</h3>
+          {form.lessons.map((lesson, index) => (
+            <div key={index} className={styles.lessonGroup}>
+              <div>
+                <label>Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={lesson.title}
+                  onChange={(e) => handleLessonChange(index, e)}
+                  placeholder="Enter lesson title"
+                  required
+                />
+              </div>
+
+              <div>
+                <label>Description</label>
+                <textarea
+                  name="description"
+                  value={lesson.description}
+                  onChange={(e) => handleLessonChange(index, e)}
+                  placeholder="Enter lesson description"
+                  required
+                />
+              </div>
+
+              
+
+              
+
+             
+
+              <button type="button" onClick={() => removeLesson(index)} className={styles.removeLessonButton}>Remove Lesson</button>
+            </div>
+          ))}
+          <button type="button" onClick={addLesson} className={styles.addLessonButton}>Add Lesson</button>
         </div>
 
         <button type="submit" className={styles.addButton} disabled={isSubmitting}>

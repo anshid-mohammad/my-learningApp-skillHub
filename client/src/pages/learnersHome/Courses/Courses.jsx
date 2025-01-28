@@ -19,7 +19,7 @@ function Courses() {
     fetchCourse();
   }, []);
 
-  const handleClick = (courseId) => {
+  const handleClickData = (courseId) => {
     navigate(`/course-details/${courseId}`);
   };
 
@@ -34,14 +34,15 @@ function Courses() {
             <div
               className={styles.coursecard}
               key={course._id}
-              onClick={() => handleClick(course._id)}
+              onClick={() => handleClickData(course._id)}
             >
               <div className={styles.imagecontainer}>
                 <img
                   src={course.photo}
                   alt={course.title}
                   className={styles.courseimage}
-                />
+                  onClick={() => handleClickData(course._id)}
+                  />
               </div>
               <div className={styles.cardbody}>
                 <h5 className={styles.coursename}>{course.courseName}</h5>

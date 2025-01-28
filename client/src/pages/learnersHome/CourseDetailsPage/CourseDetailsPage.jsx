@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./CourseDetailsPage.module.css";
 import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -42,33 +42,52 @@ function CourseDetailsPage() {
     fetchCourseDataById();
   }, [id]);
 
+ const  handleEnroll= (courseId,teacherId)=>{
+  navigate(`/student-form/?courseId=${courseId}&teacherId=${teacherId}`);
+}
   // Function to render dynamic tab content
   const renderContent = () => {
+    
     switch (activeTab) {
       case "overview":
         return (
           <div className={styles.tabContent}>
             <h2>{courseData?.courseName || "Course Name"}</h2>
-            <p>By {courseData?.instructor || "Instructor Name"}</p>
+            <p>By {courseData?.
+teacherName || "Instructor Name"}</p>
             <div className={styles.rating}>
               <span>{courseData?.rating || "⭐⭐⭐⭐☆"}</span>
             </div>
-            <p className={styles.price}>{courseData?.price || "$95"}</p>
-            <p className={styles.description}>{courseData?.description}</p>
-            <p className={styles.readMore}>Read more</p>
-          </div>
+            <p className={styles.price}> Price :{courseData?.price || "$95"}</p>
+            <p className={styles.description}>Description: {courseData?.description}</p>
+            <p className={styles.category}>Category :{courseData?.category}</p>
+            <p className={styles.category}>  📞 :{courseData?.teacherContact}</p>
+
+
+            <Link className={styles.readMore}>Teacher Details</Link>
+\          </div>
         );
-      case "lessons":
-        return (
-          <div className={styles.tabContent}>
-            <h2>Lessons</h2>
-            <ul>
-              {courseData?.lessons?.map((lesson, index) => (
-                <li key={index}>{lesson}</li>
-              )) || <li>No lessons available.</li>}
-            </ul>
-          </div>
-        );
+        case "lessons":
+            return (
+              <div className={styles.tabContent}>
+                <h2 className={styles.lessonHeading}>Lessons</h2>
+                {courseData?.lessons?.length > 0 ? (
+                  <ul className={styles.lessonList}>
+                    {courseData.lessons.map((lesson, index) => (
+                      <li key={index} className={styles.lessonItem}>
+                        <div className={styles.lessonDetails}>
+                          <h3 className={styles.lessonTitle}>{lesson.title}</h3>
+                          <p className={styles.lessonDescription}>{lesson.description}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className={styles.noLessonsText}>No lessons available.</p>
+                )}
+              </div>
+            );
+          
       case "reviews":
         return (
           <div className={styles.tabContent}>
@@ -112,20 +131,31 @@ function CourseDetailsPage() {
 
           <div className={styles.tagContainer}>
             <h3>{courseData.institutionName || "Institution Name"}</h3>
+
+            <h5>Address :{courseData.institutionAddress || "Institution Name"}</h5>
+
             <div className={styles.tags}>
+            <span className={styles.tag} >
+                    {courseData.schedule}
+                  </span>  
+
               {courseData.tags?.length > 0 ? (
                 courseData.tags.map((tag, index) => (
                   <span className={styles.tag} key={index}>
-                    {tag}
+                    {courseData.category}
                   </span>
+                  
+                  
                 ))
               ) : (
-                <span className={styles.tag}>No Tags Available</span>
+                <span className={styles.tag}>{courseData.category}</span>
+                
               )}
+              
             </div>
           </div>
 
-          <button className={styles.enrollButton}>GET ENROLL</button>
+          <button className={styles.enrollButton}  onClick={()=>handleEnroll(courseData._id,courseData.teacherId)}>GET ENROLL</button>
         </div>
       ) : (
         <h1>Please log in</h1>
@@ -169,8 +199,8 @@ function CourseDetailsPage() {
         <div className={styles.courseHighlights}>
           <ul>
             <li>100+ Lessons</li>
-            <li>7 Weeks</li>
-            <li>30% Off</li>
+            <li>{courseData.frequency}</li>
+            <li>{courseData.discount}% Off</li>
             <li>Certificate</li>
           </ul>
         </div>

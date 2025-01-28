@@ -29,13 +29,13 @@ function CourseList() {
   const handleApprove = async () => {
     try {
       const response = await axios.put(`/api/auth/update-status/${id}`, {
-        status: "Approved",
+        status: "approved",
       });
 
       if (response.status === 200) {
         setCourseDetails((prevDetails) => ({
           ...prevDetails,
-          status: "Approved",
+          status: "approved",
         }));
         alert("Course status updated to Approved!");
         navigate("/admin");

@@ -43,13 +43,12 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  photo:{
-    type:String,
-    required:true
+  photo: {
+    type: String,
+    required: true,
   },
   courseDuration: {
-    type: String,
-    // required: true, // Example: '3 months', '6 weeks'
+    type: String, // Example: '3 months', '6 weeks'
   },
   schedule: {
     type: String,
@@ -70,15 +69,15 @@ const courseSchema = new mongoose.Schema({
     },
   },
   frequency: {
-    type: String,
-    required: true, // Example: 'Weekly', 'Daily'
+    type: String, // Example: 'Weekly', 'Daily'
+    required: true,
   },
   price: {
     type: Number,
     required: true,
     min: 0,
   },
-  discountOffers: {
+  discount: {
     type: String,
     trim: true, // Example: '10% off for early birds'
   },
@@ -86,7 +85,25 @@ const courseSchema = new mongoose.Schema({
     type: String,
     enum: ["pending", "under-review", "approved", "rejected", "completed"],
     default: "pending",
-  }
+  },
+  teacherId: {
+    type: String, // Refers to the ObjectId of the user in your users collection
+    required: true,
+  },
+  lessons: [
+    {
+      title: {
+        type: String,
+        required: true,
+        trim: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+    
+    },
+  ],
 }, {
   timestamps: true, // Automatically adds createdAt and updatedAt fields
 });

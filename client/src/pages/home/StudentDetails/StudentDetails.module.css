@@ -1,0 +1,220 @@
+/* Main container for the component */
+.applicantContainer {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Table Wrapper for horizontal scrolling */
+  .tableWrapper {
+    margin: 20px auto;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Enable horizontal scroll */
+    width: 100%; /* Ensure the wrapper takes full width */
+    max-width: 100%; /* Prevent exceeding screen size */
+  }
+  
+  /* Table styling */
+  .applicantTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .applicantTable th {
+    background: linear-gradient(to right, #dddff0, #fefefe);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+    border: none;
+  }
+  
+  .applicantTable td {
+    padding: 12px;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .applicantTable tr:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .applicantTable tr:hover {
+    background-color: #f0f0ff;
+  }
+  
+  /* Styles for the student name with avatar */
+  .studentName {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Status labels */
+  .active {
+    color: white;
+    background-color: green;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  .inactive {
+    color: white;
+    background-color: orange;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  .offline {
+    color: white;
+    background-color: red;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  /* View button styles */
+  .btnViewCLick {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(to right, #1fc8db, #2cb5e8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btnViewCLick:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to right, #007bff, #0056b3);
+  }
+  
+  .btnViewCLick:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    margin-top: 50px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .modalImage {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 10px;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    color: #e11313;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  
+  .closeButton:hover {
+    transform: scale(1.2);
+    color: #ff4d4d;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .applicantContainer {
+      padding: 10px;
+    }
+  
+    .btnViewCLick {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+  
+    .tableWrapper {
+      overflow-x: auto; /* Ensure horizontal scroll on small screens */
+    }
+  
+    .modalContent {
+      margin: 20px;
+      max-width: 90%;
+    }
+  }
+  .backButton {
+    position: absolute;
+    right: 40px;
+    background: transparent;
+    color: #e11313;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.2s ease, color 0.3s ease;
+    border-radius: 50%;
+  }
+  
+  .chatButton,
+  .paymentButton {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(to right, #1fc8db, #2cb5e8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .chatButton:hover,
+  .paymentButton:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to right, #1fc8db, #2cb5e8);
+  }
+  
+  /* Chat button specific gradient */
+  .chatButton {
+    background: linear-gradient(90deg, #0056b3, #003f7f);
+  }
+  
+  .chatButton:hover {
+    background: linear-gradient(to right, #1fc8db, #2cb5e8);
+  }

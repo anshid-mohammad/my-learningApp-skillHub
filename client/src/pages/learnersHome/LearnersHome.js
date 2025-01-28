@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess, checkAuthStatus } from "../../redux/UserSlice";
 import Courses from './Courses/Courses';
+import StudentProgress from './studentProgress/StudentProgress';
 
 function LearnersHome() {
   const navigate = useNavigate();
@@ -48,7 +49,9 @@ function LearnersHome() {
       <Courses></Courses>
 
     ),
-    addmissionProgress: <Section title="Admission Progress" text="Here are your approved courses..." />,
+    addmissionProgress: (
+      <StudentProgress></StudentProgress>
+    ),
     myAccount: <Section title="My Account" text="Account details and settings..." />,
     teachers: <Section title="Teachers" text="Manage students here..." />,
     myProfile: <Section title="My Profile" text="View and edit your profile here..." />,

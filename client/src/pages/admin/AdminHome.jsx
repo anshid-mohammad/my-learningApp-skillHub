@@ -47,11 +47,11 @@ function AdminHome() {
 
   const handleViewClick = async(id) => {
     try {
-        await axios.put(`/api/auth/update-status/${id}`, { status: "Under-Review" });
+        await axios.put(`/api/auth/update-status/${id}`, { status: "under-review" });
   
         setFormData((prevApplications) =>
           prevApplications.map((application) =>
-            application._id === id ? { ...application, status: "Under-Review" } : application
+            application._id === id ? { ...application, status: "under-review" } : application
           )
         );
   

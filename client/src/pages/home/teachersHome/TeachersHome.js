@@ -195,6 +195,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { checkAuthStatus } from "../../../redux/UserSlice";
 import { useSelector, useDispatch } from 'react-redux';
+import StudentDetails from '../StudentDetails/StudentDetails';
+import ProgressBar from '../addmisionProcess/ProgressBar';
+import Chat from '../../chat/Chat';
 
 function TeachersHome() {
   const navigate = useNavigate();
@@ -291,12 +294,18 @@ function TeachersHome() {
     ) : (
       <div>Please login to view your approved courses.</div>
     ),
-    addmissionProgress: <Section title="Admission Progress" text="Here are your approved courses..." />,
+    Students: (
+      <StudentDetails></StudentDetails>
+    ),
+    addmissionProgress: (
+      <ProgressBar></ProgressBar>
+    ),
     myAccount: <Section title="My Account" text="Account details and settings..." />,
     teachers: <Section title="Teachers" text="Manage students here..." />,
     myProfile: <Section title="My Profile" text="View and edit your profile here..." />,
     yourCourses: <Section title="Your Courses" text="Verify students here..." />,
-    chat: <Section title="Chat" text="Chat with students or teachers..." />,
+    chat: (<p>dsc</p>
+    ),
   };
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
