@@ -206,7 +206,7 @@ function TeachersHome() {
   const [activeSection, setActiveSection] = useState("home");
   const [courseData, setCourseData] = useState([]);
 
-  const { loggedIn, user, loading } = useSelector((state) => state.auth);
+  const { loggedIn, user, loading,userId } = useSelector((state) => state.auth);
 
   // Check authentication status on mount
   useEffect(() => {
@@ -304,7 +304,8 @@ function TeachersHome() {
     teachers: <Section title="Teachers" text="Manage students here..." />,
     myProfile: <Section title="My Profile" text="View and edit your profile here..." />,
     yourCourses: <Section title="Your Courses" text="Verify students here..." />,
-    chat: (<p>dsc</p>
+    chat: (
+      <Chat/>
     ),
   };
 

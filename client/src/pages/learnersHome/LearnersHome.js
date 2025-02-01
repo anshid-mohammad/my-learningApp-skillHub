@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess, checkAuthStatus } from "../../redux/UserSlice";
 import Courses from './Courses/Courses';
 import StudentProgress from './studentProgress/StudentProgress';
+import Chat from '../chat/Chat';
 
 function LearnersHome() {
   const navigate = useNavigate();
@@ -56,7 +57,9 @@ function LearnersHome() {
     teachers: <Section title="Teachers" text="Manage students here..." />,
     myProfile: <Section title="My Profile" text="View and edit your profile here..." />,
     yourCourses: <Section title="Your Courses" text="Verify students here..." />,
-    chat: <Section title="Chat" text="Chat with students or teachers..." />,
+    chat:(
+      <p>mkm</p>
+    ),
   };
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);

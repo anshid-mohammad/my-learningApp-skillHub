@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {addCourseDetails,getCourseData} =require("../controllers/teachersContollers")
+const {addCourseDetails,getCourseData,} =require("../controllers/teachersContollers")
 
 const multer = require('multer');
 
