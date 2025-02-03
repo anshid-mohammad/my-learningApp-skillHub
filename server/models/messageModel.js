@@ -4,28 +4,28 @@ const messageSchema = new mongoose.Schema(
   {
     message: {
       type: String,
-      required: [true, "Message text is required."], // Improved validation message
+      required: [true, "Message text is required."],
     },
     users: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Ensure this matches the model name for users
+        ref: 'User', // Reference to User model
         required: [true, "At least two users are required for a message."],
       },
     ],
     sender: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', // Ensure this matches the model name for the sender
+      ref: 'User', // Reference to User model
       required: [true, "Sender ID is required."],
     },
   },
   {
-    timestamps: true, // Automatically adds `createdAt` and `updatedAt` fields
+    timestamps: true,
   }
 );
 
-// Indexes for faster querying
-messageSchema.index({ users: 1 }); // Index for querying messages by users
-messageSchema.index({ sender: 1 }); // Index for querying messages by sender
+// Indexing for faster lookups
+messageSchema.index({ users: 1 });
+messageSchema.index({ sender: 1 });
 
-module.exports = mongoose.model('Message', messageSchema); // Use PascalCase for model names
+module.exports = mongoose.model('Message', messageSchema);

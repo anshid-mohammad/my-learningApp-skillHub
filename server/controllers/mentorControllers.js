@@ -59,14 +59,14 @@ const mentorLogin = async (req, res) => {
   }
 };
 
-const getTeachers = async (req, res) => {
-  try {
-    const mentors = await Mentor.find();
-    res.status(200).json(mentors);
-  } catch (error) {
-    console.error('Error fetching students:', error);
-    res.status(500).json({ message: 'Failed to fetch students' });
-  }
-};
+const getAllVendor = async (req, res) => {
+    try {
+      const user = await Mentor.find();
+      res.status(200).json(user);
+    } catch (error) {
+      console.error('Error fetching students:', error);
+      res.status(500).json({ message: 'Failed to fetch students' });
+    }
+  };
 
-module.exports = {mentorLogin, mentorSignup,getTeachers};
+module.exports = {mentorLogin, mentorSignup,getAllVendor};

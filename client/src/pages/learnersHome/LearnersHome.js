@@ -57,8 +57,7 @@ function LearnersHome() {
     teachers: <Section title="Teachers" text="Manage students here..." />,
     myProfile: <Section title="My Profile" text="View and edit your profile here..." />,
     yourCourses: <Section title="Your Courses" text="Verify students here..." />,
-    chat:(
-      <p>mkm</p>
+    chat:(<Chat></Chat>
     ),
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Container } from 'react-bootstrap';
 import { checkAuthStatus } from '../../redux/UserSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,65 +8,81 @@ import Contacts from './Contacts';
 import Welcome from './welcome/Welcome';
 import styles from './Chat.module.css';
 import ChatContainer from './ChatContainer';
+import { io } from 'socket.io-client';
 
 function Chat() {
+  const socket = useRef(); // Fixed typo: soket -> socket
   const dispatch = useDispatch();
-  const { loggedIn, user, userId } = useSelector((state) => state.auth);
+  const { loggedIn, user, userId, userRole } = useSelector((state) => state.auth);
   const [contacts, setContacts] = useState([]);
   const [currentChat, setCurrentChat] = useState(undefined);
-  const [loadingContacts, setLoadingContacts] = useState(true); // Renamed for clarity
-  const [error, setError] = useState(null); // For error handling
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const host = 'http://localhost:5000';
 
-  // Check authentication status
+  // Check authentication status on mount
   useEffect(() => {
     dispatch(checkAuthStatus());
   }, [dispatch]);
 
-  // Redirect to login page if not logged in
+  // Redirect to login if not logged in
   useEffect(() => {
     if (!loggedIn || !user) {
       navigate('/login');
     }
   }, [loggedIn, user, navigate]);
 
-  // Fetch contacts
+  // Initialize socket connection
+  useEffect(() => {
+    if (user) {
+      socket.current = io(host, { withCredentials: true });
+      socket.current.emit('add-user', userId);
+
+      // Cleanup socket connection on unmount
+      return () => {
+        if (socket.current) {
+          socket.current.disconnect();
+        }
+      };
+    }
+  }, [userId, user]);
+
+  // Fetch contacts based on user role
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const response = await axios.get('/api/auth/get-student'); // API call
+        const endpoint = userRole === 'mentor' ? '/api/auth/get-user' : '/api/auth/get-ventor';
+        const response = await axios.get(endpoint);
         setContacts(response.data);
-        setLoadingContacts(false); // Mark loading as false after data is fetched
-        console.log("contact id",response.data)
-
       } catch (error) {
         console.error('Error fetching contacts:', error);
-        setError('Failed to load contacts'); // Set error message
-        setLoadingContacts(false); // Stop loading if there is an error
+        setError('Failed to load contacts');
+      } finally {
+        setLoading(false);
       }
     };
-    if (loggedIn && user) {
-      fetchContacts();
-    }
-  }, [loggedIn, user]);
 
-  // Handle chat selection
-  const handleChatChange = (chat) => {
+    if (loggedIn && user) fetchContacts();
+  }, [loggedIn, user, userRole]);
+
+  // Handle chat change
+  const handleChatChange = useCallback((chat) => {
     setCurrentChat(chat);
-  };
+  }, []);
 
   return (
     <Container>
       <div className={styles.container}>
         <Contacts contacts={contacts} changeChat={handleChatChange} />
-        {loadingContacts ? (
-          <div>Loading contacts...</div> // Show loading message if still fetching contacts
+        {loading ? (
+          <div>Loading contacts...</div>
         ) : error ? (
-          <div>{error}</div> // Display error message if there was an error
+          <div>{error}</div>
         ) : currentChat === undefined ? (
           <Welcome contacts={contacts} />
         ) : (
-          <ChatContainer currentChat={currentChat} contacts={contacts} />
+          <ChatContainer currentChat={currentChat} socket={socket} />
         )}
       </div>
     </Container>

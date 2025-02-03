@@ -1,36 +1,62 @@
-/* Global Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Body */
-body {
-    background-color: #f1f1f1;
-    color: #333;
-    height: 100%;
-}
-
-/* Full-screen Flex Layout */
-.container {
+/* Spinner Animation */
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Spinner Animation Keyframe */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Loading State */
+  .loadingState {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Error State */
+  .errorState {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+  }
+  
+  .errorState button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .errorState button:hover {
+    background-color: #45a049;
+  }
+  
+  /* General Chat Layout */
+  .container {
     display: flex;
-    height: 100vh;
-    flex-direction: row; /* Default for larger screens */
-    overflow: hidden;
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .chatContainer {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .contactsList {
+    flex-basis: 30%;
+  }
+  
