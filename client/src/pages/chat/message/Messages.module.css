@@ -41,6 +41,7 @@
 /* Responsive */
 @media (max-width: 768px) {
     .message {
+        display: none;
         max-width: 85%;
     }
 }

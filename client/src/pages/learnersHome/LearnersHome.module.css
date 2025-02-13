@@ -9,7 +9,7 @@ body {
 /* Learners Home Page */
 .learnerHomePage {
   display: flex;
-  min-height: 100vh;
+  min-height: 88vh;
   position: relative;
   transition: all 0.3s ease;
 }

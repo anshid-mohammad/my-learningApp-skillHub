@@ -139,10 +139,41 @@ const deleteCourse = async (req, res) => {
   }
 };
 
+
+
+// Enroll a user in a course
+const enrollCourse = async (req, res) => {
+  const { courseId, userId } = req.body;
+
+  try {
+    // Find the course by ID
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ success: false, message: 'Course not found' });
+    }
+
+    // Check if the user is already enrolled
+    if (course.studentId === userId) {
+      return res.status(400).json({ success: false, message: 'User already enrolled' });
+    }
+
+    // Update the course with the student's ID
+    course.studentId = userId;
+    await course.save();
+
+    res.status(200).json({ success: true, message: 'Enrollment successful', course });
+  } catch (error) {
+    console.error('Error enrolling in course:', error);
+    res.status(500).json({ success: false, message: 'Failed to enroll in course', error: error.message });
+  }
+};
+
+
 module.exports = {
   addCourseDetails,
   getCourseData,
   getCourseById,
   updateCourse,
   deleteCourse,
+  enrollCourse
 };

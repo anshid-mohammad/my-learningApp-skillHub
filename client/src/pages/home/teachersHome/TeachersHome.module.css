@@ -9,7 +9,7 @@ body {
   /* Learners Home Page */
   .learnerHomePage {
     display: flex;
-    min-height: 100vh;
+    min-height: 88vh;
     position: relative;
     transition: all 0.3s ease;
   }
@@ -67,9 +67,38 @@ body {
   }
   
   .navLinks {
-    list-style: none;
-    padding: 0;
+    max-height: 500px; /* Adjust as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+    overflow-x: hidden; /* Hides horizontal scrolling */
+    padding: 10px; /* Optional padding for spacing */
+    list-style: none; /* Removes default list styles */
+    margin: 0; /* Reset margin */
   }
+  
+  .navLinks li {
+    margin-bottom: 8px; /* Add spacing between list items */
+  }
+  
+  .navLinks::-webkit-scrollbar {
+    display: none;
+
+    width: 4px; /* Width of the scrollbar */
+  }
+  
+  .navLinks::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Background of the scrollbar track */
+  }
+  
+  .navLinks::-webkit-scrollbar-thumb {
+    display: none;
+    background: #0056b3;/* Scrollbar thumb color */
+    border-radius: 4px; /* Rounded edges for thumb */
+  }
+  
+  .navLinks::-webkit-scrollbar-thumb:hover {
+    background:#0056b3 /* Thumb color on hover */
+  }
+  
   
   .navLinks li {
     margin-bottom: 15px;
@@ -126,7 +155,7 @@ body {
     margin-bottom: 15px;
   }
   
-  .content p {
+  .subheadind {
     font-size: 16px;
     color: #555;
   }

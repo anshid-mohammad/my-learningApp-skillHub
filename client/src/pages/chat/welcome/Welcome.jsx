@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from "./Welcome.module.css";
-import { FaRobot } from 'react-icons/fa';
 
-export default function Welcome({ currentChat }) {
-  if (!currentChat) {
-    return null; // Ensure currentChat exists before rendering
+export default function Welcome({ contacts }) {
+  if (!contacts || contacts.length === 0) {
+    return null; // Ensure contacts exist before rendering
   }
 
   return (
     <div className={styles.container}>
-      <FaRobot className={styles.imgrobot} /> {/* Correct usage of FaRobot */}
+      {/* Chat-related Image */}
+      <img src="../../../images/chat.png" alt="Welcome to Chat" className={styles.chatImage} />
+
       <h1 className={styles.welcomeHeader}>
-        Welcome, <span>{currentChat.name}</span>
+        Welcome, <span>{contacts[0].name}</span>
       </h1>
       <h3 className={styles.welcomesub}>Please select a chat to start messaging</h3>
     </div>

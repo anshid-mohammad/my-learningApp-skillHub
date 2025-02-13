@@ -2,6 +2,8 @@ const Mentor = require("../models/mentor");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../utils/jwtUtils");
 const CourseDetails= require("../models/teachersForm")
+const { s3, upload, randomFileName, sharp } = require('../utils/s3Clinet');
+
 
 const mentorSignup = async (req, res) => {
   try {
@@ -69,4 +71,76 @@ const getAllVendor = async (req, res) => {
     }
   };
 
-module.exports = {mentorLogin, mentorSignup,getAllVendor};
+  const addVentorImage = async (req, res) => {
+    const file = req.file;
+  
+    if (!file) {
+      return res.status(400).json({ error: 'No photo file provided' });
+    }
+  
+    try {
+      // Process image using Sharp
+      const buffer = await sharp(file.buffer)
+        .resize({ height: 1080, width: 720, fit: 'contain' }) // Resize image
+        .jpeg({ quality: 70 }) // Convert to JPEG with 70% quality
+        .toBuffer();
+  
+      // Generate unique file name
+      const uniqueFileName = `${Date.now()}_${file.originalname}`;
+  
+      // S3 upload parameters
+      const params = {
+        Bucket: process.env.AWS_S3_BUCKET_NAME,
+        Key: uniqueFileName,
+        Body: buffer,
+        ContentType: file.mimetype,
+      };
+  
+      // Upload to S3
+      const data = await s3.upload(params).promise();
+      const imageUrl = `https://${process.env.AWS_S3_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${uniqueFileName}`;
+  
+      // Find user and update the photo field
+      const updatedUser = await Mentor.findByIdAndUpdate(
+        req.body.userId, // Make sure this ID is being sent in the request
+        { $set: { photo: imageUrl } }, // Set the new photo URL
+        { new: true } // Return updated user document
+      );
+  
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.status(200).json({ message: 'User image updated successfully!', user: updatedUser });
+    } catch (error) {
+      console.error('Error updating user image:', error);
+      res.status(500).json({ message: 'Failed to update user image', error: error.message });
+    }
+  };
+  const updateProfileVentor = async (req, res) => {
+    const { userId,email, name, address, phoneNumber,bio,nation,gender,dob,workExperience,  certifications ,skills,hobbies } = req.body;
+  
+    if (!userId || !name || !address || !phoneNumber || !bio) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+  
+    try {
+      const updatedUser = await Mentor.findByIdAndUpdate(
+        userId,
+        { name, address,email, phoneNumber ,bio,nation,dob,gender,workExperience,  certifications ,skills,hobbies},
+        { new: true }
+      );
+  
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.status(200).json({ message: 'Profile updated successfully!', user: updatedUser });
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      res.status(500).json({ message: 'Failed to update profile', error: error.message });
+    }
+  };
+  
+
+module.exports = {mentorLogin, mentorSignup,getAllVendor,addVentorImage,updateProfileVentor};

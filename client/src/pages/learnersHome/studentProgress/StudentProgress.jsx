@@ -10,7 +10,7 @@ function StudentProgress() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loggedIn, user, userId } = useSelector((state) => state.auth);
+  const { loggedIn, user, userId,username } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(checkAuthStatus());
@@ -35,7 +35,9 @@ function StudentProgress() {
     };
     fetchApplications();
   }, []);
-  const handleBack = () => navigate('/learners');
+  const handleBack =()=>{
+    navigate("/learners")
+  }
 
   const getProgress = (status) => {
     switch (status) {
@@ -64,7 +66,9 @@ function StudentProgress() {
   };
 
   if (loading) return <p>Loading...</p>;
-
+const handleChatButton=()=>{
+  navigate("/chat")
+}
   return (
     <div className={styles.progressContainer}>
               <button onClick={handleBack} className={styles.backButton}>←</button>
@@ -101,14 +105,14 @@ function StudentProgress() {
 
             {/* Description */}
             <div className={styles.description}>
-              <strong>{item.name}</strong>,{" "} <br />
-              {item.email || "No address provided."}
+              <strong>Course Name : {item.name}</strong>,{" "} <br />
+            Teacher Name :  {username || "No address provided."}
             </div>
 
             {/* Buttons for approved status */}
             {item.status === "approved" && (
               <div className={styles.actionButtons}>
-                <button className={styles.chatButton}>Chat</button>
+                <button onClick={handleChatButton} className={styles.chatButton}>Chat</button>
                 <button className={styles.paymentButton}>Payment</button>
               </div>
             )}

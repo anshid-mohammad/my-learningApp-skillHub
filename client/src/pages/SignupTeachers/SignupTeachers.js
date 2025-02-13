@@ -46,7 +46,7 @@ function SignupTeachers() {
         setName('');
         setEmail('');
         setPassword('');
-        navigate("/mentor-login");
+        navigate("/teacher-login");
       } catch (error) {
         setMessage(error.response?.data?.message || 'An unexpected error occurred');
       } finally {

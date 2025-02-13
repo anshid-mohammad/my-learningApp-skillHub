@@ -26,8 +26,8 @@ function Login() {
 
         // Dispatch the loginSuccess action to update Redux state
         dispatch(loginSuccess({ token }));
-
         // Store in localStorage
+
         localStorage.setItem('token', token);
         localStorage.setItem('username', username);
         localStorage.setItem('userRole', userRole);
@@ -66,6 +66,8 @@ function Login() {
     const userRole = urlParams.get('userRole');
     const userId = urlParams.get('userid');
     if (token && username && userRole && userId) {
+        console.log("tokenyuhgyuh",token)
+
       // Update Redux and Local Storage
       dispatch(loginSuccess({ token }));
       localStorage.setItem('token', token);
@@ -76,9 +78,10 @@ function Login() {
       toast.success('Auto-login successful!', { position: "top-right" });
 
       // Redirect based on role
-      navigate(userRole === 'admin' ? '/admin' : '/learnersHome');
+      navigate(userRole === 'admin' ? '/admin' : '/learners');
     } else {
       console.log('No token found in the URL');
+      
     }
   }, [dispatch, navigate]);
 

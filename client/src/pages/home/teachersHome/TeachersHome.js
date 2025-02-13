@@ -198,6 +198,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import StudentDetails from '../StudentDetails/StudentDetails';
 import ProgressBar from '../addmisionProcess/ProgressBar';
 import Chat from '../../chat/Chat';
+import TeacherProfile from '../teacherProfile/TeacherProfile';
+import ApprovedCourses from '../approvedCourses/ApprovedCourses';
+import YourCourses from '../yourCourses/YourCourses';
 
 function TeachersHome() {
   const navigate = useNavigate();
@@ -244,7 +247,7 @@ function TeachersHome() {
     home: loggedIn ? (
       <div className={styles.courseCard}>
         <h2>Add Your Courses</h2>
-        <p>
+        <p className={styles.subheadind}>
           "Education is the key to success in life, and teachers make a <br />
           lasting impact in the lives of their students."
         </p>
@@ -258,52 +261,30 @@ function TeachersHome() {
     ) : (
       <div>Please login to view content</div>
     ),
-    ApprovedCourses: loggedIn ? (
-      <div className={styles.applicantContainer}>
-        <table className={styles.applicantTable}>
-          <thead>
-            <tr>
-              <th>S.no</th>
-              <th>Course Name</th>
-              <th>Teacher Name</th>
-              <th>Action</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {courseData.length > 0 ? (
-              courseData.map((form, index) => (
-                <tr key={form._id}>
-                  <td>{index + 1}</td>
-                  <td>{form.courseName}</td>
-                  <td>{form.teacherName}</td>
-                  <td>
-                    {/* Add button or action handlers here */}
-                  </td>
-                  <td>{form.status}</td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5">No approved courses available.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    ) : (
-      <div>Please login to view your approved courses.</div>
-    ),
+   
     Students: (
       <StudentDetails></StudentDetails>
     ),
     addmissionProgress: (
       <ProgressBar></ProgressBar>
     ),
+    ApprovedCourses: loggedIn ? (
+    
+      <ApprovedCourses/>
+  ) : (
+    <div>Please login to view your approved courses.</div>
+  ),
     myAccount: <Section title="My Account" text="Account details and settings..." />,
     teachers: <Section title="Teachers" text="Manage students here..." />,
-    myProfile: <Section title="My Profile" text="View and edit your profile here..." />,
-    yourCourses: <Section title="Your Courses" text="Verify students here..." />,
+    myProfile: (
+      <TeacherProfile/>
+    ),
+    yourCourses:  loggedIn ? (
+    
+      <YourCourses/>
+  ) : (
+    <div>Please login to view your approved courses.</div>
+  ),
     chat: (
       <Chat/>
     ),

@@ -2,11 +2,25 @@ import React, { useState, useEffect } from 'react';
 import styles from "./Courses.module.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { checkAuthStatus } from '../../../redux/UserSlice';
+import { useDispatch,useSelector } from 'react-redux';
 
 function Courses() {
+  const dispatch=useDispatch()
   const [courseData, setCourseData] = useState([]);
   const navigate = useNavigate();
+  const { loggedIn, user, loading, userId } = useSelector((state) => state.auth);
 
+
+
+ useEffect(() => {
+    if (!loading && (!loggedIn || !user)) {
+      navigate('/login');
+    }
+  }, [loggedIn, user, loading, navigate]);
+ useEffect(() => {
+    dispatch(checkAuthStatus());
+  }, [dispatch]);
   useEffect(() => {
     const fetchCourse = async () => {
       try {

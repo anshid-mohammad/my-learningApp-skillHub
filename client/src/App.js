@@ -19,6 +19,12 @@ import StudentList from "./pages/home/studentList/StudentList";
 import ProgressBar from "./pages/home/addmisionProcess/ProgressBar";
 import StudentProgress from "./pages/learnersHome/studentProgress/StudentProgress";
 import Chat from "./pages/chat/Chat";
+import EditProfile from "./pages/learnersHome/Profile/editProfile/EditProfile";
+import Profile from "./pages/learnersHome/Profile/Profile";
+import TeacherProfile from "./pages/home/teacherProfile/TeacherProfile";
+import EditTeacherProfile from "./pages/home/teacherProfile/editTeachersProfile/EditTeacherProfile";
+import ViewMore from "./pages/home/addmisionProcess/viewMore/ViewMore";
+import Razorpay from "./pages/learnersHome/razorpay/Razorpay";
 
 
 
@@ -33,12 +39,20 @@ function App() {
         <Route  path='/teacher-signup' element={<SignupTeacher/>}></Route>
         <Route  path='/teacher-login' element={<LoginTeachers/>}></Route>
         <Route  path='/teachers' element={<TeachersHome/>}></Route>
+        <Route  path='/teacher-profile' element={<TeacherProfile/>}></Route>
+        <Route  path='/edit-teacher-profile' element={<EditTeacherProfile/>}></Route>
+
 
 
         <Route  path='/learners' element={<LearnersHome/>}></Route>
         <Route  path='/course-details/:id' element={<CourseDetailsPage/>}></Route>
         <Route  path='/student-form' element={<StudentsForm/>}></Route>
         <Route  path='/student-Progress' element={<StudentProgress/>}></Route>
+        <Route  path='/edit-profile' element={<EditProfile/>}></Route>
+        <Route  path='/student-profile' element={<Profile/>}></Route>
+        <Route  path='/razorpay' element={<Razorpay/>}></Route>
+
+
 
 
 
@@ -46,8 +60,8 @@ function App() {
         <Route  path='/student-Details' element={<StudentDetails/>}></Route>
         <Route  path='/student-list/:id' element={<StudentList/>}></Route>
         <Route  path='/progress-bar' element={<ProgressBar/>}></Route>
-
         <Route  path='/chat' element={<Chat/>}></Route>
+        <Route  path='/view-more/:id' element={<ViewMore/>}></Route>
 
 
         <Route  path='/sample' element={<Sample/>}></Route>

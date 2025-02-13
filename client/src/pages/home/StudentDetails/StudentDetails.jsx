@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 function StudentDetails() {
   const { loggedIn, user, userId } = useSelector((state) => state.auth);
-
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

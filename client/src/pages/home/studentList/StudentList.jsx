@@ -85,7 +85,7 @@ function StudentList() {
           <p><strong>Status:</strong> {studentDetails.status}</p>
           <p><strong>Identity Proof:</strong></p>
           {studentDetails.identityProof ? (
-            <a href={studentDetails.identityProof} target="_blank" rel="noopener noreferrer">
+            <a className={styles.link} href={studentDetails.identityProof} target="_blank" rel="noopener noreferrer">
               View Identity Proof
             </a>
           ) : (

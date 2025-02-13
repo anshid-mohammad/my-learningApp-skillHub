@@ -13,7 +13,7 @@ function CourseDetailsPage() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { loggedIn, user, loading } = useSelector((state) => state.auth);
+  const { loggedIn, user, loading ,userId} = useSelector((state) => state.auth);
 
   // Check authentication status
   useEffect(() => {
@@ -42,7 +42,22 @@ function CourseDetailsPage() {
     fetchCourseDataById();
   }, [id]);
 
- const  handleEnroll= (courseId,teacherId)=>{
+ const  handleEnroll=async (courseId,teacherId)=>{
+  try {
+    const response = await axios.post('/api/auth/enroll-course', {
+      courseId,
+      userId:userId,
+    });
+    if (response.data.success) {
+      // Optionally, update the UI or navigate to a different page
+    } else {
+      alert('Enrollment failed. Please try again.');
+    }
+  } catch (error) {
+    console.error('Error enrolling in course:', error);
+    alert('An error occurred while enrolling. Please try again.');
+  }
+
   navigate(`/student-form/?courseId=${courseId}&teacherId=${teacherId}`);
 }
   // Function to render dynamic tab content
@@ -65,7 +80,7 @@ teacherName || "Instructor Name"}</p>
 
 
             <Link className={styles.readMore}>Teacher Details</Link>
-\          </div>
+          </div>
         );
         case "lessons":
             return (

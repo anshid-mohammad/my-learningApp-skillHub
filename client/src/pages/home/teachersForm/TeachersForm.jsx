@@ -99,7 +99,7 @@ function TeachersForm() {
       setIsSubmitting(true);
 
       const response = await axios.post('/api/auth/add-course', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { 'Content-Type': 'multipart/form-data'},
       });
 
       console.log('Course created:', response.data);
@@ -307,7 +307,6 @@ function TeachersForm() {
         </div>
 
         <div className={styles.lessonsContainer}>
-          <h3>Lessons</h3>
           {form.lessons.map((lesson, index) => (
             <div key={index} className={styles.lessonGroup}>
               <div>

@@ -6,6 +6,7 @@ import { loginSuccess, checkAuthStatus } from "../../redux/UserSlice";
 import Courses from './Courses/Courses';
 import StudentProgress from './studentProgress/StudentProgress';
 import Chat from '../chat/Chat';
+import Profile from './Profile/Profile';
 
 function LearnersHome() {
   const navigate = useNavigate();
@@ -55,7 +56,9 @@ function LearnersHome() {
     ),
     myAccount: <Section title="My Account" text="Account details and settings..." />,
     teachers: <Section title="Teachers" text="Manage students here..." />,
-    myProfile: <Section title="My Profile" text="View and edit your profile here..." />,
+    myProfile: (
+      <Profile/>
+    ),
     yourCourses: <Section title="Your Courses" text="Verify students here..." />,
     chat:(<Chat></Chat>
     ),

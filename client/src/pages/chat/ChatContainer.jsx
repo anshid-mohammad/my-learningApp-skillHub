@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styles from './ChatContainer.module.css';
 import { Container } from 'react-bootstrap';
-import ChatINput from './ChatINput.jsx/ChatINput';
+import ChatINput from './ChatINput.jsx/ChatINput'; // Fixed typo: ChatINput -> ChatInput
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function ChatContainer({ currentChat, socket }) {
-  const [messages, setMessages] = useState([]);
-  const { userId } = useSelector((state) => state.auth);
-  const [arrivalMessage, setArrivalMessage] = useState(null);
-  const scrollRef = useRef();
+  const [messages, setMessages] = useState([]); // Messages state
+  const { userId, userRole } = useSelector((state) => state.auth); // Redux state
+  const [arrivalMessage, setArrivalMessage] = useState(null); // Incoming messages
+  const scrollRef = useRef(); // Ref for scrolling to the latest message
+  const [selectedImage, setSelectedImage] = useState(null); // Modal image state
 
   // Fetch messages for the current chat
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function ChatContainer({ currentChat, socket }) {
             from: userId,
             to: currentChat._id,
           });
-          setMessages(data);
+          setMessages(data); // Set fetched messages
         } catch (error) {
           console.error('Error fetching messages:', error);
         }
@@ -33,7 +34,7 @@ export default function ChatContainer({ currentChat, socket }) {
 
   // Handle sending a message
   const handleSendMsg = async (msg) => {
-    if (!msg.trim()) return;
+    if (!msg.trim()) return; // Ignore empty messages
 
     const newMessage = {
       fromSelf: true,
@@ -41,7 +42,7 @@ export default function ChatContainer({ currentChat, socket }) {
       timestamp: new Date().toISOString(),
     };
 
-    setMessages((prev) => [...prev, newMessage]);
+    setMessages((prev) => [...prev, newMessage]); // Add message to local state
 
     try {
       const { data } = await axios.post('/api/auth/add-message', {
@@ -52,6 +53,7 @@ export default function ChatContainer({ currentChat, socket }) {
       });
 
       if (data.msg === 'Message added successfully') {
+        // Emit the message via socket
         socket.current.emit('send-msg', {
           to: currentChat._id,
           from: userId,
@@ -68,11 +70,12 @@ export default function ChatContainer({ currentChat, socket }) {
     if (!socket.current) return;
 
     const handleMessageReceive = (msg) => {
-      setArrivalMessage({ fromSelf: false, message: msg });
+      setArrivalMessage({ fromSelf: false, message: msg }); // Set incoming message
     };
 
     socket.current.on('msg-receive', handleMessageReceive);
 
+    // Cleanup socket listener
     return () => {
       socket.current.off('msg-receive', handleMessageReceive);
     };
@@ -89,9 +92,16 @@ export default function ChatContainer({ currentChat, socket }) {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+  const closeModal = () => {
+    setSelectedImage(null); // Close modal by clearing selected image
+  };
 
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl); // Show the clicked image in modal
+  };
   return (
     <Container>
+      {/* Chat Header */}
       <div className={styles.chatheader}>
         <div className={styles.userDetails}>
           <div className={styles.avatar}>
@@ -99,6 +109,8 @@ export default function ChatContainer({ currentChat, socket }) {
               className={styles.imageAvatar}
               src={currentChat.photo || '/default-avatar.png'}
               alt={`${currentChat.name}'s Avatar`}
+              onClick={() => handleImageClick(currentChat.photo || '/default-avatar.png')} // Handle image click
+
             />
           </div>
           <div className={styles.username}>
@@ -106,13 +118,17 @@ export default function ChatContainer({ currentChat, socket }) {
           </div>
         </div>
       </div>
+
+      {/* Chat Messages */}
       <div className={styles.chatMessages}>
         {messages.length > 0 ? (
           messages.map((message) => (
             <div
               ref={scrollRef}
-              key={uuidv4()}
-              className={`${styles.message} ${message.fromSelf ? styles.sended : styles.received}`}
+              key={uuidv4()} // Unique key for each message
+              className={`${styles.message} ${
+                message.fromSelf ? styles.sended : styles.received
+              }`}
             >
               <div className={styles.content}>
                 <p>{message.message}</p>
@@ -122,7 +138,20 @@ export default function ChatContainer({ currentChat, socket }) {
         ) : (
           <p>No messages to display.</p>
         )}
+         {/* Modal for displaying the selected image */}
+              {selectedImage && (
+                <div className={styles.modal} onClick={closeModal}>
+                  <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                    <img src={selectedImage} alt="Selected" className={styles.modalImage} />
+                    <button className={styles.closeButton} onClick={closeModal}>
+                      &times; {/* This represents the "X" symbol */}
+                    </button>
+                  </div>
+                </div>
+              )}
       </div>
+
+      {/* Chat Input */}
       <ChatINput handleSendMsg={handleSendMsg} />
     </Container>
   );

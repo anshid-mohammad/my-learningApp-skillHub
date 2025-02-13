@@ -90,6 +90,9 @@ const courseSchema = new mongoose.Schema({
     type: String, // Refers to the ObjectId of the user in your users collection
     required: true,
   },
+  studentId: {
+    type: String, // Refers to the ObjectId of the user in your users collection
+  },
   lessons: [
     {
       title: {
